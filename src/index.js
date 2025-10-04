@@ -6,6 +6,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Ruta raíz - AGREGAR ESTO
+app.get("/", (req, res) => {
+  res.json({
+    message: "API de Tareas funcionando correctamente",
+    rutas: {
+      "GET /tasks": "Listar todas las tareas",
+      "POST /tasks": "Crear una tarea (body: {title: string})",
+      "PUT /tasks/:id": "Actualizar tarea (body: {title: string, completed: boolean})",
+      "DELETE /tasks/:id": "Eliminar tarea"
+    }
+  });
+});
+
 // ✅ Crear tarea
 app.post("/tasks", async (req, res) => {
   try {
